@@ -1,3 +1,4 @@
+use sha2::{Digest, Sha256};
 use std::{
     fmt::{self, Debug, Display},
     rc::Rc,
@@ -32,7 +33,10 @@ where
         Rc::new(y)
     }
     pub fn hash(value: &str) -> String {
-        value.to_string()
+        let mut hasher = Sha256::new();
+        hasher.update(value.as_bytes());
+        let hash_values: String = format!("{:X}", hasher.finalize());
+        hash_values
     }
 }
 

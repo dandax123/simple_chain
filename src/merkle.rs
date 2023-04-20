@@ -10,7 +10,7 @@ const MAX_BLOCK_LIMIT: usize = 4;
 
 #[derive(Clone, Debug, Default)]
 pub struct MerkleTree<T: Display> {
-    root: Option<Rc<Node<T>>>,
+    pub root: Option<Rc<Node<T>>>,
     children: [Rc<Node<T>>; MAX_BLOCK_LIMIT],
 }
 
