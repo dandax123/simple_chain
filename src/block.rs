@@ -28,9 +28,7 @@ where
     }
 
     pub fn mine_block(&mut self) {
-        // println!("Starting mining process");
         let (nonce, hash) = self.mine_new_block(NUM_OF_ZEROS);
-        // println!("Finished mining process");
         self.nonce = nonce;
         self.hash = hash;
     }
@@ -43,7 +41,6 @@ where
             is_restriction_passed = Block::<T>::check_restriction(hash.as_str(), num_of_zeros);
             nonce += 1;
             self.nonce = nonce;
-            // println!("Nonce: {}, hash: {} ", nonce, hash);
         }
         (nonce, hash)
     }
