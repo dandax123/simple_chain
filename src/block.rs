@@ -7,19 +7,20 @@ use crate::merkle::MerkleTree;
 const NUM_OF_ZEROS: usize = 3;
 
 pub struct Block<T: std::fmt::Display> {
-    prev_block_hash: String,
+    pub prev_block_hash: String,
     nonce: u32,
     data: MerkleTree<T>,
-    hash: String,
+    pub hash: String,
 }
 
 impl<T> Block<T>
 where
-    T: Display,
+    T: Display + Default,
 {
-    pub fn new(prev_block_hash: &str, data: MerkleTree<T>) -> Self {
+    pub fn new(mut data: MerkleTree<T>) -> Self {
+        data.build_tree();
         Self {
-            prev_block_hash: prev_block_hash.to_string(),
+            prev_block_hash: "".to_string(),
             nonce: 0,
             data,
             hash: "".to_string(),
