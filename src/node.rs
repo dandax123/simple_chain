@@ -4,31 +4,31 @@ use std::{
     rc::Rc,
 };
 #[derive(Clone, Debug, Default)]
-pub struct Node<T> {
+pub struct MerkleTreeNode<T> {
     pub value: T,
     pub hash: String,
-    pub left: Option<Rc<Node<T>>>,
-    pub right: Option<Rc<Node<T>>>,
+    pub left: Option<Rc<MerkleTreeNode<T>>>,
+    pub right: Option<Rc<MerkleTreeNode<T>>>,
 }
-impl<T> Node<T>
+impl<T> MerkleTreeNode<T>
 where
     T: Display + Default,
 {
-    pub fn new_leaf(value: T) -> Rc<Node<T>> {
-        let y = Node {
-            hash: Node::<T>::hash(value.to_string().as_ref()),
+    pub fn new_leaf(value: T) -> Rc<MerkleTreeNode<T>> {
+        let y = MerkleTreeNode {
+            hash: MerkleTreeNode::<T>::hash(value.to_string().as_ref()),
             value,
             right: None,
             left: None,
         };
         Rc::new(y)
     }
-    pub fn empty_leaf() -> Rc<Node<T>> {
-        let y = Node {
+    pub fn empty_leaf() -> Rc<MerkleTreeNode<T>> {
+        let y = MerkleTreeNode {
             value: T::default(),
             right: None,
             left: None,
-            hash: Node::<T>::hash(T::default().to_string().as_ref()),
+            hash: MerkleTreeNode::<T>::hash(T::default().to_string().as_ref()),
         };
         Rc::new(y)
     }
@@ -40,7 +40,7 @@ where
     }
 }
 
-impl<T> fmt::Display for Node<T>
+impl<T> fmt::Display for MerkleTreeNode<T>
 where
     T: Default + Display,
 {

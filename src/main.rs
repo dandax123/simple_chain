@@ -1,8 +1,9 @@
-use std::fmt::Display;
-
 use crate::block::Block;
 use crate::merkle::MerkleTree;
+use std::fmt::Display;
+
 mod block;
+mod chain;
 mod hash;
 mod merkle;
 mod node;
@@ -42,7 +43,7 @@ impl Display for Student {
 }
 
 fn main() {
-    let mut struct_t = MerkleTree::new([
+    let mut student_merkletree = MerkleTree::new([
         Student {
             name: "121".to_string(),
             age: 4,
@@ -69,10 +70,10 @@ fn main() {
         },
     ]);
 
-    struct_t.build_tree();
+    student_merkletree.build_tree();
     // println!("{}", struct_t);
-    let mut block = Block::new("", struct_t);
-    block.mine_block();
+    let mut student_block = Block::new("", student_merkletree);
+    // block.mine_block();
 
-    println!("{}", block)
+    // println!("{}", )
 }
