@@ -6,12 +6,12 @@ use std::{
 
 use crate::node::MerkleTreeNode;
 
-const MAX_BLOCK_LIMIT: usize = 4;
+const MAX_DATA_LIMIT: usize = 4;
 
 #[derive(Clone, Debug, Default)]
 pub struct MerkleTree<T: Display> {
     pub root: Option<Rc<MerkleTreeNode<T>>>,
-    children: [Rc<MerkleTreeNode<T>>; MAX_BLOCK_LIMIT],
+    children: [Rc<MerkleTreeNode<T>>; MAX_DATA_LIMIT],
 }
 
 impl<T> fmt::Display for MerkleTree<T>
@@ -26,7 +26,7 @@ impl<T> MerkleTree<T>
 where
     T: Display + Default,
 {
-    pub fn new(values: [T; MAX_BLOCK_LIMIT]) -> Self {
+    pub fn new(values: [T; MAX_DATA_LIMIT]) -> Self {
         let children = values.map(MerkleTreeNode::new_leaf);
         Self {
             root: None,

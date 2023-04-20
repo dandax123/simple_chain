@@ -6,7 +6,6 @@ use std::fmt::Display;
 
 mod block;
 mod chain;
-mod hash;
 mod merkle;
 mod node;
 

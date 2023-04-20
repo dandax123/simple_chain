@@ -47,12 +47,9 @@ where
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         writeln!(f, "Root: {}", &self.hash)?;
         if let Some(a) = &self.left {
-            // write!(f, "Left: ")?;
             std::fmt::Display::fmt(&a, f)?;
         };
         if let Some(b) = &self.right {
-            // write!(f, "Right: ")?;
-            // writeln!(f)?;
             std::fmt::Display::fmt(&b, f)?;
         };
         Ok(())
